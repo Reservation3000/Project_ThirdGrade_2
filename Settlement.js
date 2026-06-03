@@ -24,6 +24,7 @@ let isSettlementImgPrepared = false;
 class Settlement extends Song {
   constructor() {
     super();
+    mySettlement = this;  // 設定全域的 mySettlement 變數
     this.valueProgress = {};  // 1. 數字動畫倉庫
     this.radiusProgress = {}; // 2. 半徑動畫倉庫
   }
@@ -48,7 +49,7 @@ class Settlement extends Song {
         this.radiusProgress[radius] = 0;
     }
     if (this.radiusProgress[radius] < radius) {
-        this.radiusProgress[radius] += (radius - this.radiusProgress[radius]) * 0.01;
+        this.radiusProgress[radius] += (radius - this.radiusProgress[radius]) * 0.04;
     } else {
         this.radiusProgress[radius] = radius; 
     }
@@ -203,10 +204,11 @@ function drawSettlement() {
     textStyle(BOLD);
     textFont('Montserrat');
     mySettlement.display(CONFIG.score.scoreTotal, 5, 330, 350, 40, 255);   
+    mySettlement.display(CONFIG.score.miss, 5, 220, 350, 40, 255);
+    if(CONFIG.score.miss == 0){CONFIG.score.hitRate = 100}  
     mySettlement.display(CONFIG.score.hitRate.toFixed(0) + "%", 5, 30, 350, 40, 255); 
     mySettlement.display(CONFIG.score.prefect, 5, 140, 350, 40, 255); 
-    mySettlement.display(CONFIG.score.great, 5, 180, 350, 40, 255); 
-    mySettlement.display(CONFIG.score.miss, 5, 220, 350, 40, 255);   
+    mySettlement.display(CONFIG.score.great, 5, 180, 350, 40, 255);    
     
     // 標題項目 (半徑 400 組)
     textStyle(NORMAL);

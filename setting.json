@@ -30,7 +30,7 @@
     "judgeInterval":100
   },
   "uslNoteSetting": {
-    "speed": 14,
+    "speed": 5,
     "initialPosition":1080,
     "judgeLine": 600,
     "lifeLine": 530,
@@ -109,6 +109,6 @@
     ]
   },
   "websocket": {
-    "serverAddress": "ws://192.168.137.1:8080"
+    "serverAddress": "ws://127.0.0.1:8080"
   }
 }

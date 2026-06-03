@@ -82,6 +82,7 @@ statusEntryTimer = new Timer(); // 翻頁初始冷卻計時器
 
 opObj = new OpObj(); // 初始化op物件
 bgm1Obj = new Bgm1Obj(); // 初始化bgm1物件
+settlement = new Settlement(); // 初始化結算物件
 selectEffect = new SelectEffect(); // 初始化選歌特效物件
 songJudgeText = new SongJudgeText(); // 初始化歌曲判定文字物件
 songComboText = new SongComboText(); // 初始化歌曲combo文字物件
@@ -151,9 +152,10 @@ if (isHitPressed) {
     if (!isplaying && song && status !== 2.5) {
         song.play();
         settlementRadiusAnima = {}; // 重製結算頁面動畫的半徑變量
+        mySettlement.reset(); 
         isplaying = true;
 
-        settlement.reset(); 
+        
     }
 
      if (song && !song.paused) {
@@ -236,6 +238,7 @@ if (status == 3.5) {
     if (!isLoad) {
         CutsceneText[0] = new cutsceneText(-PI);
         CutsceneImg[0] = new cutsceneImg();
+        isSettlementImgPrepared = false; // 確保過場圖片在每次進入時都會重新準備
         isLoad = true;
     }
     CutsceneImg[0].display();
