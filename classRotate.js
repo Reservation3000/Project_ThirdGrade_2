@@ -1,5 +1,6 @@
-class Rotate {  
+class Rotate extends Inote {  
     constructor(triggerTime, direction) {
+        super();
         this.triggerTime = triggerTime;
         this.direction = direction;
         this.noteSpeed = CONFIG.uslNoteSetting.speed;
@@ -101,7 +102,7 @@ class Rotate {
       
   }
 
-  display() {
+  display(time) {
     if(this.isActive && !this.isJudged && this.notePosition >= 0) {
 
       push();

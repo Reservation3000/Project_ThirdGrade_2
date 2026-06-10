@@ -80,8 +80,8 @@ pass3_5Timer = new Timer(); // 3.5過門計時器
 passSongSelectPageTimer = new Timer(); // 翻頁計時器
 statusEntryTimer = new Timer(); // 翻頁初始冷卻計時器
 
-opObj = new OpObj(); // 初始化op物件
-bgm1Obj = new Bgm1Obj(); // 初始化bgm1物件
+opObj = new OpObj('op'); // 初始化op物件
+bgm1Obj = new Bgm1Obj('bgm1'); // 初始化bgm1物件
 settlement = new Settlement(); // 初始化結算物件
 selectEffect = new SelectEffect(); // 初始化選歌特效物件
 songJudgeText = new SongJudgeText(); // 初始化歌曲判定文字物件
@@ -182,20 +182,21 @@ push();
         }
       }
 
+      
+      // 更新和顯示 drag 音符
+      for (let i = 0; i < Drags.length; i++) {
+        Drags[i].display(time);
+      }
+
       if(song && !song.paused) {
       for (let i = 0; i < Notes.length; i++) {
         Notes[i].update(time);
-        Notes[i].display();
-      }
-
-      // 更新和顯示 drag 音符
-      for (let i = 0; i < Drags.length; i++) {
-        Drags[i].display(time);  // 傳遞 time
+        Notes[i].display(time);
       }
 
       for (let i = 0; i < Rotates.length; i++) {
         Rotates[i].update(time);
-        Rotates[i].display();
+        Rotates[i].display(time);
       }
 
       playerMark();
@@ -204,7 +205,7 @@ push();
       // 暫停時也顯示音符，使用暫停時的時間
       for (let i = 0; i < Notes.length; i++) {
         Notes[i].update(time);
-        Notes[i].display();
+        Notes[i].display(time);
       }
 
       for (let i = 0; i < Drags.length; i++) {
@@ -213,7 +214,7 @@ push();
 
       for (let i = 0; i < Rotates.length; i++) {
         Rotates[i].update(time);
-        Rotates[i].display();
+        Rotates[i].display(time);
       }
     }
     

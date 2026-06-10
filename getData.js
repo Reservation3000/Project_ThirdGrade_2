@@ -255,70 +255,64 @@ function initializeNotes() {
     }
   }
 }
-// 基底類別：負責管理音訊節點的生命週期與狀態切換邏輯
+
+
+
 class SoundStateObj {
   constructor(soundName) {
-    this.soundName = soundName;
+    this.soundName = soundName; 
     this.isTrigger = false;
     this.source = null;
   }
 
-  // 統一的停止邏輯
   stopSound() {
-    if (this.source) {
+    if (this.source) {          
       this.source.stop();
       this.source.disconnect(); // 斷開連接以釋放資源
-      this.source = null;
+      this.source = null;       // 刪除存在 this.source 中的物件
     }
   }
 
-  // 
   update(targetStatus) {
-    // 進入目標狀態
-    if (status === targetStatus) {
-      if (!this.isTrigger) { //
-        this.stopSound();
-        this.source = this.play(); // 呼叫子類別實作的播放細節
-        this.isTrigger = true;
+    if (status === targetStatus) {   // 是否status與傳入的數字(狀態)相同
+      if (!this.isTrigger) { 
+        this.stopSound();            // 確保之前的音效已停止
+        this.source = this.play();   // 播放新的音效，並保存此物件至 this.source
+        this.isTrigger = true;  
       }
     }else {
-      if (this.isTrigger) {
         this.stopSound();
-        this.isTrigger = false;
-      }
+        this.isTrigger = false;  
     }
   }
 
-  // 播放行為：預設行為，可被子類別覆寫
   play() {
-    return playSound(this.soundName);
+
   }
 }
 
-// OP 物件：繼承後只需指定名稱
+// op
 class OpObj extends SoundStateObj {
-  constructor() {
-    super('op');
+  constructor(songName) {
+    super(songName); // 傳入音效名稱給父類別
   }
+
   play() {
     let src = playSound(this.soundName);
-    if (src) {
-      src.loop = true; // 只有 BGM 需要循環
-    }
     return src;
   }
 }
 
-// BGM 物件：繼承後覆寫播放行為（加入循環）
+// BGM 
 class Bgm1Obj extends SoundStateObj {
-  constructor() {
-    super('bgm1');
+  constructor(songName) {
+    super(songName); // 傳入音效名稱給父類別
   }
 
   play() {
     let src = playSound(this.soundName);
     if (src) {
-      src.loop = true; // 只有 BGM 需要循環
+      src.loop = true; // bgm loop
     }
     return src;
   }

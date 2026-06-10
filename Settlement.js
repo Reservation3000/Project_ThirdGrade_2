@@ -49,7 +49,7 @@ class Settlement extends Song {
         this.radiusProgress[radius] = 0;
     }
     if (this.radiusProgress[radius] < radius) {
-        this.radiusProgress[radius] += (radius - this.radiusProgress[radius]) * 0.04;
+        this.radiusProgress[radius] += (radius - this.radiusProgress[radius]) * 0.1;
     } else {
         this.radiusProgress[radius] = radius; 
     }
@@ -205,8 +205,9 @@ function drawSettlement() {
     textFont('Montserrat');
     mySettlement.display(CONFIG.score.scoreTotal, 5, 330, 350, 40, 255);   
     mySettlement.display(CONFIG.score.miss, 5, 220, 350, 40, 255);
-    if(CONFIG.score.miss == 0){CONFIG.score.hitRate = 100}  
+    if(CONFIG.score.miss === 0){CONFIG.score.hitRate = 100}else{
     mySettlement.display(CONFIG.score.hitRate.toFixed(0) + "%", 5, 30, 350, 40, 255); 
+    }
     mySettlement.display(CONFIG.score.prefect, 5, 140, 350, 40, 255); 
     mySettlement.display(CONFIG.score.great, 5, 180, 350, 40, 255);    
     

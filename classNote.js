@@ -1,5 +1,6 @@
-class note {
+class note extends Inote {
     constructor(triggerTime, noteLand) {
+    super();
     this.triggerTime = triggerTime;
     this.noteLand = noteLand;
     this.noteSpeed = CONFIG.uslNoteSetting.speed;
@@ -106,7 +107,7 @@ class note {
    
   }
 
-    display() {
+    display(time) {
     if(this.isActive && !this.isJudged &&  this.notePosition >= 0) {
       // 初始角度寬度
       const arcWidth = TWO_PI / CONFIG.note.arcWidthValue;

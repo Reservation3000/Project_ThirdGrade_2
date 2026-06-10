@@ -8,9 +8,9 @@
 #define SCL_PIN 22
 #endif
 
-const char* ssid = "Reservation"; 
+const char* ssid = "RESERVATION"; 
 const char* password = "0487878787";
-const char* websocket_server = "ws://172.20.10.2:8080";
+const char* websocket_server = "ws://192.168.137.1:8080";
 const int botton = 5; // 按鈕腳位
 bool lastState = HIGH; // 上次按鈕狀態，初始為未按下 
 int bottonStatus = 0;
@@ -42,7 +42,7 @@ float mXscale = 1.0f, mYscale = 1.0f, mZscale = 1.0f;  // 軟鐵比例
 int status = 0;                         // 0: 初始狀態, 1: 陀螺儀校準中, 2: 磁力計校準中, 3: 校準完成並開始傳送數據
 int lastStatus = -1;                    // 
 bool hasTriggered = false;              // 用來擋住重複輸出
-int frequency = 25;                     // WebSocket 傳送頻率 (毫秒)
+int frequency = 29;                     // WebSocket 傳送頻率 (毫秒)
 bool calibrationDone = false;           // 校準流程是否已完成
 bool wifiConnected = false;             // WiFi 連線狀態
 bool websocketConnected = false;        // WebSocket 連線狀態
